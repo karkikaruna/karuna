@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const HeroSection = () => {
   return (
-    <section className="bg-background py-16">
+    <section id="home" className="bg-background py-16">
       <div className="grid grid-cols-1 md:grid-cols-2 items-center max-w-6xl mx-auto px-6 gap-10">
         <motion.div
           initial={{ opacity: 0, x: -50 }}

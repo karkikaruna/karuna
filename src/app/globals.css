@@ -8,8 +8,9 @@
   --color-text: #e0e1dd;
   --color-third-bg: #415a77;
   --color-fourth-bg: #778da9;
-  --color-hover: #ccd5ae;
+  --color-hover: white;
   --color-bordercolor: #9f86c0;
+  --color-click:"#edede9";
 }
 
 .bg-header { background-color: var(--color-header); }
@@ -25,6 +26,7 @@
 .text-fourth-bg { color: var(--color-fourth-bg); }
 .text-textcolor { color: var(--color-text); }
 .text-hovercolor { color: var(--color-hover); }
+.text-clicklink{color: var(--color-click);}
 
 
 
