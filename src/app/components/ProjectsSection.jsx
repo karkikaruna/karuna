@@ -7,8 +7,9 @@ import { motion, useInView } from "framer-motion";
 const projectsData = [
   {
     id: 1,
-    title:"KD Bot",
-    description: "KD-BOT is a simple personal assistant model programmed in C++.It includes user management functions, chat systems, calculators, and a simple tictactoe game. The bot is an all-in-one solution that incorporates a user-friendly interface to manage your day to day life.",
+    title: "KD Bot",
+    description:
+      "KD-BOT is a simple personal assistant model programmed in C++. It includes user management functions, chat systems, calculators, and a simple TicTacToe game. A compact all-in-one solution.",
     image: "/images/projects/kd.png",
     tag: ["All"],
     gitUrl: "https://github.com/",
@@ -17,13 +18,13 @@ const projectsData = [
   {
     id: 2,
     title: "Toll Management System",
-    description: "This project is a Toll Management System prototype developed during the Mini Hackathon organized by the Robotics Club.It demonstrates a simplified automated toll booth using embedded components and sensors.",
+    description:
+      "A Toll Management System prototype developed during a Robotics Club Hackathon. Demonstrates an automated toll booth using embedded components and sensors.",
     image: "/images/projects/toll_management.png",
-    tag: ["All","Robotics"],
+    tag: ["All", "Robotics"],
     gitUrl: "https://github.com/",
     previewUrl: "https://github.com/",
   },
-  
 ];
 
 const ProjectsSection = () => {
@@ -45,11 +46,13 @@ const ProjectsSection = () => {
   };
 
   return (
-    <section id="projects" className="bg-background" >
-      <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12">
+    <section id="projects" className="bg-background py-16 px-6 md:px-12">
+      <h2 className="text-center text-4xl font-bold text-textcolor mb-12">
         My Projects
       </h2>
-      <div className="text-white flex flex-row justify-center items-center gap-2 py-6">
+
+      {/* Tag filters */}
+      <div className="flex flex-row justify-center items-center gap-4 mb-10">
         <ProjectTag
           onClick={handleTagChange}
           name="All"
@@ -61,14 +64,19 @@ const ProjectsSection = () => {
           isSelected={tag === "Robotics"}
         />
       </div>
-      <ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12">
+
+      {/* Project cards */}
+      <ul
+        ref={ref}
+        className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-10"
+      >
         {filteredProjects.map((project, index) => (
           <motion.li
             key={index}
             variants={cardVariants}
             initial="initial"
             animate={isInView ? "animate" : "initial"}
-            transition={{ duration: 0.3, delay: index * 0.4 }}
+            transition={{ duration: 0.4, delay: index * 0.3 }}
           >
             <ProjectCard
               key={project.id}
