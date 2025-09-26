@@ -2,6 +2,11 @@
 import React, { useState } from "react";
 import GithubIcon from "../../../public/github.svg";
 import LinkedinIcon from "../../../public/linkedin.svg";
+import FacebookIcon from "../../../public/facebook.svg";
+import InstagramIcon from "../../../public/instagram.svg";
+import TwitterIcon from "../../../public/x.svg";
+import GmailIcon from "../../../public/gmail.svg";
+import PhoneIcon from "../../../public/phone.svg";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -19,9 +24,7 @@ const EmailSection = () => {
     const endpoint = "/api/send";
 
     const options = {
-
       method: "POST",
-
       headers: {
         "Content-Type": "application/json",
       },
@@ -40,35 +43,86 @@ const EmailSection = () => {
   return (
     <section
       id="contact"
-      className="grid md:grid-cols-2 my-12 md:my-12 py-24 gap-4 relative bg-background"
+      className="relative grid md:grid-cols-2 gap-8 py-24 px-6 md:px-16 lg:px-24 bg-background overflow-hidden"
     >
-      <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-900 to-transparent rounded-full h-80 w-80 z-0 blur-lg absolute top-3/4 -left-4 transform -translate-x-1/2 -translate-1/2"></div>
+      <div className="absolute -top-40 -left-32 w-96 h-96 bg-primary-500/30 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-fourth-bg/20 rounded-full blur-2xl"></div>
+
       <div className="z-10">
-        <h5 className="text-xl font-bold text-white my-2">
+        <h5 className="text-3xl md:text-4xl font-extrabold text-white mb-4 relative inline-block">
           Let&apos;s Connect
+          <span className="absolute -bottom-1 left-0 w-3/4 h-1 bg-primary-500 rounded-full"></span>
         </h5>
-        <p className="text-[#ADB7BE] mb-4 max-w-md">
-          {" "}
+        <p className="text-textcolor opacity-80 leading-relaxed mb-6 max-w-md">
           I&apos;m currently looking for new opportunities, my inbox is always
           open. Whether you have a question or just want to say hi, I&apos;ll
           try my best to get back to you!
         </p>
-        <div className="socials flex flex-row gap-2">
-          <Link href="github.com">
-            <Image src={GithubIcon} alt="Github Icon" />
-          </Link>
-          <Link href="linkedin.com">
-            <Image src={LinkedinIcon} alt="Linkedin Icon" />
-          </Link>
+
+        <div className="flex flex-col gap-3 mb-8">
+          <a
+            href="mailto:yourgmail@gmail.com"
+            className="flex items-center gap-3 text-textcolor hover:text-white group transition"
+          >
+            <Image
+              src={GmailIcon}
+              alt="Gmail"
+              className="w-5 h-5 group-hover:scale-110 group-hover:brightness-125 transition"
+            />
+            <span className="border-b border-transparent group-hover:border-white transition">
+              yourgmail@gmail.com
+            </span>
+          </a>
+          <a
+            href="tel:+9779812345678"
+            className="flex items-center gap-3 text-textcolor hover:text-white group transition"
+          >
+            <Image
+              src={PhoneIcon}
+              alt="Phone"
+              className="w-5 h-5 group-hover:scale-110 group-hover:brightness-125 transition"
+            />
+            <span className="border-b border-transparent group-hover:border-white transition">
+              +977 9812345678
+            </span>
+          </a>
+        </div>
+
+        <div className="flex gap-4 flex-wrap">
+          {[
+            { href: "https://github.com", icon: GithubIcon, alt: "Github" },
+            { href: "https://linkedin.com", icon: LinkedinIcon, alt: "LinkedIn" },
+            { href: "https://facebook.com", icon: FacebookIcon, alt: "Facebook" },
+            { href: "https://instagram.com", icon: InstagramIcon, alt: "Instagram" },
+            { href: "https://twitter.com", icon: TwitterIcon, alt: "Twitter" },
+          ].map((social, idx) => (
+            <Link
+              key={idx}
+              href={social.href}
+              target="_blank"
+              className="p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-md 
+              hover:shadow-[0_0_20px_rgba(0,153,255,0.7)] transition transform hover:scale-110"
+            >
+              <Image
+                src={social.icon}
+                alt={social.alt}
+                className="w-6 h-6 opacity-80 hover:opacity-100 transition"
+              />
+            </Link>
+          ))}
         </div>
       </div>
-      <div>
+
+      <div className="z-10">
         {emailSubmitted ? (
-          <p className="text-green-500 text-sm mt-2">
-            Email sent successfully!
+          <p className="text-green-400 text-lg font-medium mt-2 bg-green-900/20 px-4 py-3 rounded-lg shadow-lg border border-green-700/50">
+            ✅ Your email has been sent successfully!
           </p>
         ) : (
-          <form className="flex flex-col" onSubmit={handleSubmit}>
+          <form
+            className="flex flex-col bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-xl p-8"
+            onSubmit={handleSubmit}
+          >
             <div className="mb-6">
               <label
                 htmlFor="email"
@@ -81,10 +135,11 @@ const EmailSection = () => {
                 type="email"
                 id="email"
                 required
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
+                className="bg-background/70 border border-bordercolor placeholder-gray-400 text-gray-100 text-sm rounded-lg block w-full p-3 focus:ring-2 focus:ring-primary-500 outline-none"
                 placeholder="jacob@google.com"
               />
             </div>
+
             <div className="mb-6">
               <label
                 htmlFor="subject"
@@ -97,10 +152,11 @@ const EmailSection = () => {
                 type="text"
                 id="subject"
                 required
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
+                className="bg-background/70 border border-bordercolor placeholder-gray-400 text-gray-100 text-sm rounded-lg block w-full p-3 focus:ring-2 focus:ring-primary-500 outline-none"
                 placeholder="Just saying hi"
               />
             </div>
+
             <div className="mb-6">
               <label
                 htmlFor="message"
@@ -111,13 +167,18 @@ const EmailSection = () => {
               <textarea
                 name="message"
                 id="message"
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                placeholder="............."
+                rows="5"
+                className="bg-background/70 border border-bordercolor placeholder-gray-400 text-gray-100 text-sm rounded-lg block w-full p-3 focus:ring-2 focus:ring-primary-500 outline-none resize-none"
+                placeholder="Type your message here..."
               />
             </div>
+
             <button
               type="submit"
-              className="bg-primary-500 hover:bg-primary-600 text-white font-medium py-2.5 px-5 rounded-lg w-full"
+              className="relative bg-gradient-to-r from-primary-500 via-third-bg to-fourth-bg 
+              hover:from-fourth-bg hover:via-primary-600 hover:to-third-bg 
+              transition-all duration-300 text-white font-bold py-3 px-6 rounded-xl 
+              shadow-lg hover:shadow-[0_8px_25px_rgba(0,0,0,0.8)] transform hover:scale-105"
             >
               Send Message
             </button>
@@ -127,4 +188,8 @@ const EmailSection = () => {
     </section>
   );
 };
+
 export default EmailSection;
+
+
+

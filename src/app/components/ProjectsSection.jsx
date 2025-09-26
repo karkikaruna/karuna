@@ -46,13 +46,18 @@ const ProjectsSection = () => {
   };
 
   return (
-    <section id="projects" className="bg-background py-16 px-6 md:px-12">
-      <h2 className="text-center text-4xl font-bold text-textcolor mb-12">
-        My Projects
-      </h2>
+    <section id="projects" className="bg-background py-20 px-6 md:px-12 relative">
 
-      {/* Tag filters */}
-      <div className="flex flex-row justify-center items-center gap-4 mb-10">
+      <div className="text-center mb-14">
+  <h2 className="text-4xl md:text-5xl font-extrabold text-white relative inline-block">
+    My Projects
+    <span className="absolute left-0 bottom-[-8px] h-1 w-full rounded-full 
+      bg-gradient-to-r from-[#00d4ff] via-[#7f5af0] to-[#00d4ff] shadow-[0_0_8px_rgba(127,90,240,0.6)]">
+    </span>
+  </h2>
+</div>
+
+      <div className="flex flex-wrap justify-center items-center gap-4 mb-14">
         <ProjectTag
           onClick={handleTagChange}
           name="All"
@@ -65,10 +70,9 @@ const ProjectsSection = () => {
         />
       </div>
 
-      {/* Project cards */}
       <ul
         ref={ref}
-        className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-10"
+        className="grid sm:grid-cols-2 md:grid-cols-3 gap-10"
       >
         {filteredProjects.map((project, index) => (
           <motion.li
@@ -76,7 +80,7 @@ const ProjectsSection = () => {
             variants={cardVariants}
             initial="initial"
             animate={isInView ? "animate" : "initial"}
-            transition={{ duration: 0.4, delay: index * 0.3 }}
+            transition={{ duration: 0.6, delay: index * 0.2, type: "spring" }}
           >
             <ProjectCard
               key={project.id}
@@ -94,3 +98,5 @@ const ProjectsSection = () => {
 };
 
 export default ProjectsSection;
+
+
