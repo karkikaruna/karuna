@@ -12,32 +12,41 @@ import Image from "next/image";
 
 const EmailSection = () => {
   const [emailSubmitted, setEmailSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setErrorMessage("");
+
     const data = {
       email: e.target.email.value,
       subject: e.target.subject.value,
       message: e.target.message.value,
     };
-    const JSONdata = JSON.stringify(data);
-    const endpoint = "/api/send";
 
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSONdata,
-    };
+    try {
+      const response = await fetch("/api/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
-    const response = await fetch(endpoint, options);
-    const resData = await response.json();
+      const resData = await response.json();
 
-    if (response.status === 200) {
-      console.log("Message sent.");
-      setEmailSubmitted(true);
+      if (response.status === 200) {
+        setEmailSubmitted(true);
+        e.target.reset();
+      } else {
+        setErrorMessage(resData.message || "Failed to send email.");
+      }
+    } catch (err) {
+      setErrorMessage("Failed to send email. Please try again later.");
+      console.error(err);
     }
+
+    setLoading(false);
   };
 
   return (
@@ -54,9 +63,8 @@ const EmailSection = () => {
           <span className="absolute -bottom-1 left-0 w-3/4 h-1 bg-primary-500 rounded-full"></span>
         </h5>
         <p className="text-textcolor opacity-80 leading-relaxed mb-6 max-w-md">
-          I&apos;m currently looking for new opportunities, my inbox is always
-          open. Whether you have a question or just want to say hi, I&apos;ll
-          try my best to get back to you!
+          I&apos;m currently looking for new opportunities. My inbox is always open.
+          Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!
         </p>
 
         <div className="flex flex-col gap-3 mb-8">
@@ -112,84 +120,86 @@ const EmailSection = () => {
           ))}
         </div>
       </div>
+      
+<div className="z-10">
+  <form
+    className="flex flex-col bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-xl p-8"
+    onSubmit={handleSubmit}
+  >
 
-      <div className="z-10">
-        {emailSubmitted ? (
-          <p className="text-green-400 text-lg font-medium mt-2 bg-green-900/20 px-4 py-3 rounded-lg shadow-lg border border-green-700/50">
-            ✅ Your email has been sent successfully!
-          </p>
-        ) : (
-          <form
-            className="flex flex-col bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-xl p-8"
-            onSubmit={handleSubmit}
-          >
-            <div className="mb-6">
-              <label
-                htmlFor="email"
-                className="text-white block mb-2 text-sm font-medium"
-              >
-                Your email
-              </label>
-              <input
-                name="email"
-                type="email"
-                id="email"
-                required
-                className="bg-background/70 border border-bordercolor placeholder-gray-400 text-gray-100 text-sm rounded-lg block w-full p-3 focus:ring-2 focus:ring-primary-500 outline-none"
-                placeholder="jacob@google.com"
-              />
-            </div>
+    {emailSubmitted && (
+      <p className="text-green-400 text-sm mb-4 bg-green-900/20 px-3 py-2 rounded-lg border border-green-700/50">
+        ✅ Your email has been sent successfully!
+      </p>
+    )}
 
-            <div className="mb-6">
-              <label
-                htmlFor="subject"
-                className="text-white block text-sm mb-2 font-medium"
-              >
-                Subject
-              </label>
-              <input
-                name="subject"
-                type="text"
-                id="subject"
-                required
-                className="bg-background/70 border border-bordercolor placeholder-gray-400 text-gray-100 text-sm rounded-lg block w-full p-3 focus:ring-2 focus:ring-primary-500 outline-none"
-                placeholder="Just saying hi"
-              />
-            </div>
+    {errorMessage && (
+      <p className="text-red-400 text-sm mb-4 bg-red-900/20 px-3 py-2 rounded-lg border border-red-700/50">
+        ❌ {errorMessage}
+      </p>
+    )}
 
-            <div className="mb-6">
-              <label
-                htmlFor="message"
-                className="text-white block text-sm mb-2 font-medium"
-              >
-                Message
-              </label>
-              <textarea
-                name="message"
-                id="message"
-                rows="5"
-                className="bg-background/70 border border-bordercolor placeholder-gray-400 text-gray-100 text-sm rounded-lg block w-full p-3 focus:ring-2 focus:ring-primary-500 outline-none resize-none"
-                placeholder="Type your message here..."
-              />
-            </div>
+    <div className="mb-6">
+      <label htmlFor="email" className="text-white block mb-2 text-sm font-medium">
+        Your email
+      </label>
+      <input
+        name="email"
+        type="email"
+        id="email"
+        required
+        className="bg-background/70 border border-bordercolor placeholder-gray-400 text-gray-100 text-sm rounded-lg block w-full p-3 focus:ring-2 focus:ring-primary-500 outline-none"
+        placeholder="jacob@google.com"
+      />
+    </div>
 
-            <button
-              type="submit"
-              className="relative bg-gradient-to-r from-primary-500 via-third-bg to-fourth-bg 
-              hover:from-fourth-bg hover:via-primary-600 hover:to-third-bg 
-              transition-all duration-300 text-white font-bold py-3 px-6 rounded-xl 
-              shadow-lg hover:shadow-[0_8px_25px_rgba(0,0,0,0.8)] transform hover:scale-105"
-            >
-              Send Message
-            </button>
-          </form>
-        )}
-      </div>
+    <div className="mb-6">
+      <label htmlFor="subject" className="text-white block text-sm mb-2 font-medium">
+        Subject
+      </label>
+      <input
+        name="subject"
+        type="text"
+        id="subject"
+        required
+        className="bg-background/70 border border-bordercolor placeholder-gray-400 text-gray-100 text-sm rounded-lg block w-full p-3 focus:ring-2 focus:ring-primary-500 outline-none"
+        placeholder="Just saying hi"
+      />
+    </div>
+
+    <div className="mb-6">
+      <label htmlFor="message" className="text-white block text-sm mb-2 font-medium">
+        Message
+      </label>
+      <textarea
+        name="message"
+        id="message"
+        rows="5"
+        className="bg-background/70 border border-bordercolor placeholder-gray-400 text-gray-100 text-sm rounded-lg block w-full p-3 focus:ring-2 focus:ring-primary-500 outline-none resize-none"
+        placeholder="Type your message here..."
+      />
+    </div>
+
+    <button
+      type="submit"
+      disabled={loading}
+      className={`relative bg-gradient-to-r from-primary-500 via-third-bg to-fourth-bg 
+        hover:from-fourth-bg hover:via-primary-600 hover:to-third-bg 
+        transition-all duration-300 text-white font-bold py-3 px-6 rounded-xl 
+        shadow-lg hover:shadow-[0_8px_25px_rgba(0,0,0,0.8)] transform hover:scale-105
+        cursor-pointer ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
+    >
+      {loading ? "Sending..." : "Send Message"}
+    </button>
+  </form>
+</div>
+
     </section>
   );
 };
 
 export default EmailSection;
+
 
 
 
