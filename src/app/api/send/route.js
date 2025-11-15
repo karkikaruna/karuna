@@ -7,27 +7,26 @@ export async function POST(req) {
     if (!email || !subject || !message) {
       return new Response(JSON.stringify({ message: "Missing fields" }), { status: 400 });
     }
+
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: process.env.USER,
-        pass: process.env.APP_PASSWORD, 
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD, 
       },
     });
+
     const mailOptions = {
-      from: process.env.USER,      
-      to: process.env.USER,        
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER,
       subject,
       text: `From: ${email}\n\nMessage:\n${message}`,
-      replyTo: email,               
+      replyTo: email,
     };
-    await transporter.sendMail(mailOptions, (err, info) => {
-      if (err) {
-      console.error("Error sending email:", err);
-      } else {
-      console.log("Email sent info:", info);
-      }
-    });
+
+    const info = await transporter.sendMail(mailOptions);
+    console.log("Email sent:", info.response);
+
     return new Response(JSON.stringify({ message: "Email sent successfully" }), { status: 200 });
   } 
   catch (error) {
@@ -35,4 +34,3 @@ export async function POST(req) {
     return new Response(JSON.stringify({ message: "Failed to send email", error: String(error) }), { status: 500 });
   }
 }
-

@@ -100,9 +100,10 @@ const EmailSection = () => {
           {[
             { href: "https://github.com", icon: GithubIcon, alt: "Github" },
             { href: "https://linkedin.com", icon: LinkedinIcon, alt: "LinkedIn" },
+            { href: "https://twitter.com", icon: TwitterIcon, alt: "x" },
             { href: "https://facebook.com", icon: FacebookIcon, alt: "Facebook" },
             { href: "https://instagram.com", icon: InstagramIcon, alt: "Instagram" },
-            { href: "https://twitter.com", icon: TwitterIcon, alt: "Twitter" },
+            
           ].map((social, idx) => (
             <Link
               key={idx}
@@ -129,7 +130,7 @@ const EmailSection = () => {
 
     {emailSubmitted && (
       <p className="text-green-400 text-sm mb-4 bg-green-900/20 px-3 py-2 rounded-lg border border-green-700/50">
-        ✅ Your email has been sent successfully!
+        ✅ Your message has been sent successfully!
       </p>
     )}
 
@@ -149,7 +150,7 @@ const EmailSection = () => {
         id="email"
         required
         className="bg-background/70 border border-bordercolor placeholder-gray-400 text-gray-100 text-sm rounded-lg block w-full p-3 focus:ring-2 focus:ring-primary-500 outline-none"
-        placeholder="jacob@google.com"
+        placeholder="youremail@gmail.com"
       />
     </div>
 
@@ -163,7 +164,7 @@ const EmailSection = () => {
         id="subject"
         required
         className="bg-background/70 border border-bordercolor placeholder-gray-400 text-gray-100 text-sm rounded-lg block w-full p-3 focus:ring-2 focus:ring-primary-500 outline-none"
-        placeholder="Just saying hi"
+        placeholder=" "
       />
     </div>
 
