@@ -36,13 +36,8 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            a <span className="text-hovercolor">Full Stack Web Developer</span>
+            an <span className="text-hovercolor">Undergraduate Computer Engineering Student</span>
           </motion.h2>
-
-          <p className="text-textcolor mt-4 max-w-lg mx-auto md:mx-0">
-            Turning ideas into interactive digital experiences with clean design
-            and scalable code
-          </p>
 
           <div className="mt-6 flex gap-4 justify-center md:justify-start">
             <a

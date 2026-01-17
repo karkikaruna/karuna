@@ -12,18 +12,18 @@ const projectsData = [
       "KD-BOT is a simple personal assistant model programmed in C++. It includes user management functions, chat systems, calculators, and a simple TicTacToe game. A compact all-in-one solution.",
     image: "/images/projects/kd.png",
     tag: ["All"],
-    gitUrl: "https://github.com/",
-    previewUrl: "https://github.com/",
+    gitUrl: "https://github.com/karkikaruna/KD-bot",
+    previewUrl: "https://github.com/karkikaruna/KD-bot",
   },
   {
     id: 2,
     title: "Toll Management System",
     description:
-      "A Toll Management System prototype developed during a Robotics Club Hackathon. Demonstrates an automated toll booth using embedded components and sensors.",
+      "An automated Toll Management System prototype that detects vehicles, processes user input, displays relevant information, and controls a barrier, showcasing a simplified and interactive toll collection process.",
     image: "/images/projects/toll_management.png",
     tag: ["All", "Robotics"],
-    gitUrl: "https://github.com/",
-    previewUrl: "https://github.com/",
+    gitUrl: "https://github.com/karkikaruna/TollManagementSystem",
+    previewUrl: "https://github.com/karkikaruna/TollManagementSystem",
   },
 ];
 

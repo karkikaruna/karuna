@@ -6,7 +6,6 @@ import FacebookIcon from "../../../public/facebook.svg";
 import InstagramIcon from "../../../public/instagram.svg";
 import TwitterIcon from "../../../public/x.svg";
 import GmailIcon from "../../../public/gmail.svg";
-import PhoneIcon from "../../../public/phone.svg";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -59,12 +58,11 @@ const EmailSection = () => {
 
       <div className="z-10">
         <h5 className="text-3xl md:text-4xl font-extrabold text-white mb-4 relative inline-block">
-          Let&apos;s Connect
+          Contact Me
           <span className="absolute -bottom-1 left-0 w-3/4 h-1 bg-primary-500 rounded-full"></span>
         </h5>
         <p className="text-textcolor opacity-80 leading-relaxed mb-6 max-w-md">
-          I&apos;m currently looking for new opportunities. My inbox is always open.
-          Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!
+        I would love to hear from you.
         </p>
 
         <div className="flex flex-col gap-3 mb-8">
@@ -78,31 +76,24 @@ const EmailSection = () => {
               className="w-5 h-5 group-hover:scale-110 group-hover:brightness-125 transition"
             />
             <span className="border-b border-transparent group-hover:border-white transition">
-              yourgmail@gmail.com
+              karunakarki840@gmail.com
             </span>
           </a>
           <a
             href="tel:+9779812345678"
             className="flex items-center gap-3 text-textcolor hover:text-white group transition"
           >
-            <Image
-              src={PhoneIcon}
-              alt="Phone"
-              className="w-5 h-5 group-hover:scale-110 group-hover:brightness-125 transition"
-            />
-            <span className="border-b border-transparent group-hover:border-white transition">
-              +977 9812345678
-            </span>
+            
           </a>
         </div>
 
         <div className="flex gap-4 flex-wrap">
           {[
-            { href: "https://github.com", icon: GithubIcon, alt: "Github" },
-            { href: "https://linkedin.com", icon: LinkedinIcon, alt: "LinkedIn" },
-            { href: "https://twitter.com", icon: TwitterIcon, alt: "x" },
-            { href: "https://facebook.com", icon: FacebookIcon, alt: "Facebook" },
-            { href: "https://instagram.com", icon: InstagramIcon, alt: "Instagram" },
+            { href: "https://github.com/karkikaruna", icon: GithubIcon, alt: "Github" },
+            { href: "https://www.linkedin.com/in/karunakarki/", icon: LinkedinIcon, alt: "LinkedIn" },
+            { href: "https://x.com/userkaruna", icon: TwitterIcon, alt: "x" },
+            { href: "https://www.facebook.com/karuna.karki.452351", icon: FacebookIcon, alt: "Facebook" },
+            { href: "https://www.instagram.com/_karuna.karki_/", icon: InstagramIcon, alt: "Instagram" },
             
           ].map((social, idx) => (
             <Link
@@ -142,7 +133,7 @@ const EmailSection = () => {
 
     <div className="mb-6">
       <label htmlFor="email" className="text-white block mb-2 text-sm font-medium">
-        Your email
+      Email:
       </label>
       <input
         name="email"
@@ -150,13 +141,13 @@ const EmailSection = () => {
         id="email"
         required
         className="bg-background/70 border border-bordercolor placeholder-gray-400 text-gray-100 text-sm rounded-lg block w-full p-3 focus:ring-2 focus:ring-primary-500 outline-none"
-        placeholder="youremail@gmail.com"
+        placeholder=""
       />
     </div>
 
     <div className="mb-6">
       <label htmlFor="subject" className="text-white block text-sm mb-2 font-medium">
-        Subject
+        Subject:
       </label>
       <input
         name="subject"
@@ -170,14 +161,14 @@ const EmailSection = () => {
 
     <div className="mb-6">
       <label htmlFor="message" className="text-white block text-sm mb-2 font-medium">
-        Message
+        Message:
       </label>
       <textarea
         name="message"
         id="message"
         rows="5"
         className="bg-background/70 border border-bordercolor placeholder-gray-400 text-gray-100 text-sm rounded-lg block w-full p-3 focus:ring-2 focus:ring-primary-500 outline-none resize-none"
-        placeholder="Type your message here..."
+        placeholder=" "
       />
     </div>
 
