@@ -89,11 +89,11 @@ const EmailSection = () => {
 
         <div className="flex gap-4 flex-wrap">
           {[
-            { href: "https://github.com/karkikaruna", icon: GithubIcon, alt: "Github" },
-            { href: "https://www.linkedin.com/in/karunakarki/", icon: LinkedinIcon, alt: "LinkedIn" },
-            { href: "https://x.com/userkaruna", icon: TwitterIcon, alt: "x" },
-            { href: "https://www.facebook.com/karuna.karki.452351", icon: FacebookIcon, alt: "Facebook" },
-            { href: "https://www.instagram.com/_karuna.karki_/", icon: InstagramIcon, alt: "Instagram" },
+            { href: "https://github.com/karkikaruna" ,target: "_blank", icon: GithubIcon, alt: "Github" },
+            { href: "https://www.linkedin.com/in/karunakarki/" ,target:"_blank", icon: LinkedinIcon, alt: "LinkedIn" },
+            { href: "https://x.com/userkaruna" ,target: "_blank", icon: TwitterIcon, alt: "x" },
+            { href: "https://www.facebook.com/karuna.karki.452351" ,target: "_blank", icon: FacebookIcon, alt: "Facebook" },
+            { href: "https://www.instagram.com/_karuna.karki_/", target:"_blank", icon: InstagramIcon, alt: "Instagram" },
             
           ].map((social, idx) => (
             <Link

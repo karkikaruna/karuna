@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const ProjectCard = ({ imgUrl, title, description, gitUrl, previewUrl }) => {
   return (
-    <div className="rounded-2xl overflow-hidden shadow-xl bg-third-bg/40 backdrop-blur-md border border-white/10 hover:border-[#7f5af0] hover:shadow-[0_0_25px_rgba(127,90,240,0.6)] transition-all duration-500 group">
+    <div className="rounded-2xl overflow-hidden shadow-xl bg-third-bg/40 backdrop-blur-md border border-white/10 hover:border-white/10 hover:shadow-white/10 transition-all duration-500 group">
       <div
         className="h-56 md:h-64 relative overflow-hidden"
         style={{ background: `url(${imgUrl})`, backgroundSize: "cover", backgroundPosition: "center" }}
@@ -12,7 +12,7 @@ const ProjectCard = ({ imgUrl, title, description, gitUrl, previewUrl }) => {
         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center gap-6">
           <Link
             href={gitUrl}
-            className="h-12 w-12 border-2 border-white flex items-center justify-center rounded-full hover:bg-[#7f5af0] transition"
+            className="h-12 w-12 border-2 border-white flex items-center justify-center rounded-full hover:bg-white/10 transition"
           >
             <CodeBracketIcon className="h-7 w-7 text-white" />
           </Link>

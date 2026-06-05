@@ -9,7 +9,7 @@ const projectsData = [
     id: 1,
     title: "KD Bot",
     description:
-      "KD-BOT is a simple personal assistant model programmed in C++. It includes user management functions, chat systems, calculators, and a simple TicTacToe game. A compact all-in-one solution.",
+      "KD-BOT is a personal assistant model programmed in C++. It includes user management functions, chat systems, calculators, and a TicTacToe game which can even track user mood and behaves accordingly and tries to make user feel better. It also has....for more visit the url.",
     image: "/images/projects/kd.png",
     tag: ["All"],
     gitUrl: "https://github.com/karkikaruna/KD-bot",
@@ -51,8 +51,7 @@ const ProjectsSection = () => {
       <div className="text-center mb-14">
   <h2 className="text-4xl md:text-5xl font-extrabold text-white relative inline-block">
     My Projects
-    <span className="absolute left-0 bottom-[-8px] h-1 w-full rounded-full 
-      bg-gradient-to-r from-[#00d4ff] via-[#7f5af0] to-[#00d4ff] shadow-[0_0_8px_rgba(127,90,240,0.6)]">
+    <span className="absolute left-0 bottom-[-8px] h-1 w-full rounded-full ]">
     </span>
   </h2>
 </div>
