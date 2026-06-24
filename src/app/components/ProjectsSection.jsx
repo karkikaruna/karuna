@@ -25,6 +25,16 @@ const projectsData = [
     gitUrl: "https://github.com/karkikaruna/TollManagementSystem",
     previewUrl: "https://github.com/karkikaruna/TollManagementSystem",
   },
+  {
+    id:3,
+    title: "Samsarga",
+    description:
+       "A full-stack job board where employers post jobs and job seekers apply with resume uploads. Built with React, Tailwind CSS, Node.js, Express, and MongoDB, featuring JWT authentication, role-based access, and Cloudinary file storage. ",
+       image: "/images/projecrts/samsarga.png",
+       tag: ["All"],
+       gitUrl: "https://github.com/karkikaruna/samsarga",
+       previewUrl: "https://github.com/karkikaruna/samsarga",
+  },
 ];
 
 const ProjectsSection = () => {
