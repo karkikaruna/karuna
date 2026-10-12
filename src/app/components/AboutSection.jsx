@@ -30,7 +30,7 @@ const SKILL_CATEGORIES = [
     label: "Robotics",
     icon: Cpu,
     accent: "#e0e1dd",
-    skills: ["Arduino", "Esp32","Raspberry Pi", "Ros2"],
+    skills: ["Arduino", "Esp32","Raspberry Pi"],
   },
 ];
 
