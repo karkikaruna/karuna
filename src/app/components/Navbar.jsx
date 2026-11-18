@@ -2,7 +2,19 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
+
+// Section links start with "/" so they also work from the blog pages.
+// "Blog" opens the blog page; on the home page it also highlights while
+// the "From the Blog" section is on screen.
+const sections = [
+  { id: "home", title: "Home", path: "/#home" },
+  { id: "about", title: "About", path: "/#about" },
+  { id: "projects", title: "Projects", path: "/#projects" },
+  { id: "blog", title: "Blog", path: "/blog" },
+  { id: "contact", title: "Contact Me", path: "/#contact" },
+];
 
 const NavLink = ({ href, title, active, onClick }) => {
   return (
@@ -23,15 +35,12 @@ const NavLink = ({ href, title, active, onClick }) => {
 const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-
-  const sections = [
-    { id: "home", title: "Home", path: "#home" },
-    { id: "about", title: "About", path: "#about" },
-    { id: "projects", title: "Projects", path: "#projects" },
-    { id: "contact", title: "Contact Me", path: "#contact" },
-  ];
+  const pathname = usePathname();
+  const onHome = pathname === "/";
+  const currentSection = pathname.startsWith("/blog") ? "blog" : activeSection;
 
   useEffect(() => {
+    if (!onHome) return; // the scroll spy only makes sense on the home page
     const handleScroll = () => {
       sections.forEach((section) => {
         const element = document.getElementById(section.id);
@@ -46,7 +55,7 @@ const Navbar = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [onHome]);
 
   const handleLinkClick = () => {
     setNavbarOpen(false); 
@@ -57,7 +66,7 @@ const Navbar = () => {
       <div className="flex container flex-wrap items-center justify-between mx-auto px-6 py-3 lg:py-5">
 
         <Link
-          href="#home"
+          href="/#home"
           className="text-2xl md:text-4xl font-bold tracking-wide text-[var(--color-text)] hover:text-[var(--color-hover)] transition-colors"
           onClick={handleLinkClick}
         >
@@ -82,7 +91,7 @@ const Navbar = () => {
               <NavLink
                 href={link.path}
                 title={link.title}
-                active={activeSection === link.id}
+                active={currentSection === link.id}
                 onClick={handleLinkClick}
               />
             </li>
@@ -98,7 +107,7 @@ const Navbar = () => {
                 <NavLink
                   href={link.path}
                   title={link.title}
-                  active={activeSection === link.id}
+                  active={currentSection === link.id}
                   onClick={handleLinkClick}
                 />
               </li>
